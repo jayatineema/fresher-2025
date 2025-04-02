@@ -8,13 +8,13 @@ const Dashboard = () => {
     const [newUser, setNewUser] = useState({ name: "", lastname: "", age: "" });
     const [editingUser, setEditingUser] = useState(null);
 
-    // Fetch users
+    
     const { data: users, isLoading, isError, error, refetch } = useQuery({
         queryKey: ["allUsers"],
         queryFn: fetchAllUsers,
     });
 
-    // Mutations
+  
     const addMutation = useMutation({
         mutationFn: addUser,
         onSuccess: () => {
@@ -40,7 +40,7 @@ const Dashboard = () => {
         },
     });
 
-    // Add User
+    
     const handleAddSubmit = (e) => {
         e.preventDefault();
         if (!newUser.name || !newUser.lastname || !newUser.age) {
@@ -51,7 +51,7 @@ const Dashboard = () => {
         setNewUser({ name: "", lastname: "", age: "" });
     };
 
-    // Update User
+ 
     const handleUpdateSubmit = (e) => {
         e.preventDefault();
         if (!editingUser?.id) {
@@ -61,14 +61,14 @@ const Dashboard = () => {
         updateMutation.mutate(editingUser);
     };
 
-    // Delete User
+ 
     const handleDelete = (userId) => {
         // console.log("Deleting user with ID:", userId);
         alert("Are you Sure");
         deleteMutation.mutate(userId);
     };
 
-    // Handle input changes for editing user
+ 
     const handleEditChange = (e) => {
         const { name, value } = e.target;
         setEditingUser((prev) => ({ ...prev, [name]: value }));
@@ -83,7 +83,6 @@ const Dashboard = () => {
 
             <button onClick={() => navigate("/login")} style={styles.logoutButton}>Logout</button>
 
-            {/* Add New User */}
             <div style={styles.formContainer}>
                 <h3>Add New User</h3>
                 <form onSubmit={handleAddSubmit}>
@@ -112,7 +111,7 @@ const Dashboard = () => {
                 </form>
             </div>
 
-            {/* Update User */}
+           
             {editingUser && (
                 <div style={styles.formContainer}>
                     <h3>Update User</h3>
@@ -144,7 +143,7 @@ const Dashboard = () => {
                 </div>
             )}
 
-            {/* User Table */}
+           
             <table style={styles.table}>
                 <thead>
                     <tr>
@@ -184,9 +183,9 @@ const styles = {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        minHeight: "100vh", // Ensures it grows if content overflows
+        minHeight: "100vh", 
         width: "100vw",
-        overflow: "auto", // Enables scrolling if needed
+        overflow: "auto", 
     },
 
     heading: {
